@@ -38,7 +38,6 @@ void kinematics_calculation(int a, int b, int x, int y, int z){
   delta       = delta_rad * 180 / pi;
   theta       = theta_rad * 180 / pi;
   test		  = (beta_rad+theta_rad) * 180 / pi;
-  
 }
 
 
@@ -79,36 +78,54 @@ void output(){
   Serial.println("   ");
 }
 
+void servo_test(){
+  int degree_test = 0;
+  // Serial.print("Servo Testing----------");
+  // servo1.write(0);
+  // servo2.write(0);
+  // servo3.write(0);
+  // delay(1000);
+  servo1.write(180-degree_test);
+  servo2.write(degree_test);
+  servo3.write(180-degree_test);
+  delay(1000);  
+}
 
 void setup(){
-  Serial.begin(115200);
+  Serial.begin(9600);
   servo1.attach(9);
   servo2.attach(10);
   servo3.attach(11);
 }
 
 void loop(){
+  Serial.println("Starting Program");
+
   // predefine a and b length
   a = 40;
   b = 40;
   max_length = a + b;
 
-  x = 20;		// 
+  // IMU reading
+  x = 0;		// 
   y = 0;		// base 0 deg
-  z = 40;		// 
+  z = 30;		// 
 
+  Serial.println("Attempt Calculation");
   kinematics_calculation(a,b,x,y,z);
+  Serial.println("Calculation Done");
   servo1_angle = delta;
   servo2_angle = theta+beta;
   servo3_angle = gamma;
 
 
-  servo1.write(servo1_angle);         // Base Servo
-  servo2.write(servo2_angle);         // First Link
-  servo3.write(servo3_angle);         // Second Link
-  delay(500);
-    
-  testing();
+  servo1.write(180-servo1_angle);             // Base Servo
+  servo2.write(servo2_angle);         // First Link Adjusted
+  servo3.write(180-servo3_angle);         // Second Link Adujusted
+  delay(1000);
+  
+  // servo_test();
+  // testing();
   output();
 }
 

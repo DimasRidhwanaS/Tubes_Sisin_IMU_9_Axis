@@ -43,7 +43,8 @@ int conversion (float angle){
 void setup() {
   myservo.attach(9);  
   stepper_base.setSpeed(15);            // in RPM
-  stepper_link1.setSpeed(15);           // in RPM best not trembling =30 
+  stepper_link1.setSpeed(50);           // in RPM best not trembling =30 
+
   stepper_link2.setSpeed(15);           // in RPM
   // stepper_grip.setSpeed(60);         // in RPM
 
@@ -54,7 +55,7 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(safe_switch) == HIGH){
+  if (digitalRead(safe_switch) == LOW){
     // Replace this with the input data from ESP32
     float servo1_angle = 60;  
     float servo2_angle = 180;
@@ -67,7 +68,9 @@ void loop() {
     int stepper_grip_steps    = conversion(servo4_angle);
 
     move_stepper(stepper_base, stepper_link1_steps);
-    move_stepper(stepper_link1, stepper_link1_steps);
+    move_stepper(stepper_link1, 500);
+
+
     move_stepper(stepper_link2, stepper_link1_steps);
     // move_stepper(stepper_grip, stepper_link1_steps);
     delay(1000);
