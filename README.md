@@ -4,7 +4,7 @@
 - Vanny Alviolani Indriyani   - 13221020 
 - Maritza Humaira             - 13221026
 - Muhamad Fikri               - 13221046
-- Taufik Hidayat              - 13221044
+- Taufiq Hidayat              - 13221044
 - Ade Irman Budi Hendriawan   - 13221058 
 - Dimas Ridhwana Shalsareza   - 13221076
 
